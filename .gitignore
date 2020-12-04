@@ -130,3 +130,7 @@ dmypy.json
 
 # .vscode
 .vscode/
+
+# datasets
+datasets/
+word-embeddings-for-nmt-master/
