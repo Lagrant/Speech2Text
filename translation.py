@@ -6,14 +6,31 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-examples, metadata = tfds.load('ted_hrlr_translate/pt_to_en', with_info=True, as_supervised=True)
-train_examples, val_examples = examples['train'], examples['validation']
+# examples, metadata = tfds.load('ted_hrlr_translate/pt_to_en', with_info=True, as_supervised=True)
+# train_examples, val_examples = examples['train'], examples['validation']
+
+def read_files(path):
+  with open(path,'r') as f:
+    line = f.readline()
+    data = []
+    while line:
+      data.append(line)
+      line = f.readline()
+  return data
+
+en_eg = read_files('./datasets/pt_to_en/en.train.r0.125')
+pt_eg = read_files('./datasets/pt_to_en/pt.train.r0.125')
+en_val = read_files('./datasets/pt_to_en/en.dev')
+pt_val = read_files('./datasets/pt_to_en/pt.dev')
 
 tokenizer_en = tfds.deprecated.text.SubwordTextEncoder.build_from_corpus(
-    (en.numpy() for pt, en in train_examples), target_vocab_size=2**13)
+    (bytes(en, 'utf-8') for pt, en in zip(en_eg, pt_eg)), target_vocab_size=2**13)
 
 tokenizer_pt = tfds.deprecated.text.SubwordTextEncoder.build_from_corpus(
-    (pt.numpy() for pt, en in train_examples), target_vocab_size=2**13)
+    (bytes(pt, 'utf-8') for pt, en in zip(en_eg, pt_eg)), target_vocab_size=2**13)
+
+train_examples = tf.data.Dataset.from_tensor_slices((en_eg,pt_eg))
+val_examples = tf.data.Dataset.from_tensor_slices((en_val,pt_val))
 
 simple_string = 'Transformer is awesome'
 tokenized_string = tokenizer_en.encode(simple_string)
