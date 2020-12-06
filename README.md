@@ -25,6 +25,13 @@ We can look at the model at two perspectives:
 
 
 ## Reference
-A pytorch version of speech recognition model: https://github.com/kaituoxu/Speech-Transformer
+A pytorch version of speech transformer model. Click [here](https://github.com/kaituoxu/Speech-Transformer) to see.
 
-https://arxiv.org/abs/1512.00567
+A tensorflow version of transformer model for language understanding. Click [here](https://www.tensorflow.org/tutorials/text/transformer) to see.
+
+C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Inception Architecture for Computer Vision," 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), Las Vegas, NV, 2016, pp. 2818-2826, doi: 10.1109/CVPR.2016.308.
+
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł. & Polosukhin, I. (2017). Attention is all you need. Advances in Neural Information Processing Systems (p./pp. 5998--6008), .
+
+
+
