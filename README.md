@@ -22,3 +22,9 @@ We can look at the model at two perspectives:
 1. Acoustic encoder, shrink mechanism and semantic encoder can be regarded as an integrated encoder, it extracts information from source speech. Decoder transforms information to target language.
 
 2. Acoustic encoder and shrink mechanism can be regarded as a transcriber that transcribes speech to text. Semantic encoder and decoder can be thought as a NMT model that translates the text to target language.
+
+
+## Reference
+A pytorch version of speech recognition model: https://github.com/kaituoxu/Speech-Transformer
+
+https://arxiv.org/abs/1512.00567
