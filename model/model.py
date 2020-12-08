@@ -4,6 +4,8 @@ from transformer import Transformer
 import tensorflow as tf
 from modules.attention import Pre_Net
 from modules.input_mask import create_combined_mask
+from modules.encoder import Encoder
+from modules.decoder import Decoder
 import numpy as np
 from utils import  AttrDict
 import yaml
@@ -26,7 +28,7 @@ class Speech_transformer(tf.keras.Model):
 class Text_transformer(tf.keras.Model):
     def __init__(self, config, input_vocab_size, 
                 target_vocab_size, pe_input, pe_target):
-        super(Transformer, self).__init__()
+        super(Text_transformer, self).__init__()
 
         self.encoder = Encoder(num_layers=config.model.num_layers, d_model=config.model.d_model, num_heads=config.model.num_heads, dff=config.model.dff, 
                             name='Encoder' , pe_max_len=pe_input, dp=config.model.rate, input_vocab_size=input_vocab_size)
