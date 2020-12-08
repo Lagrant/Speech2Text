@@ -9,31 +9,20 @@ from model.modules.optimizer import *
 from model.modules.positional_encoding import *
 from model.utils import AttrDict,ValueWindow
 from model.model import Speech_transformer as Transformer
-import yaml,argparse,os,time
+import yaml,os,time
 from tensorflow.python.ops import summary_ops_v2
 from datasets.datafeeder import DataFeeder
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-config', type=str, default='config/hparams_transcriber.yaml')
-    parser.add_argument('-load_model', type=str, default=None)
-    parser.add_argument('-model_name', type=str, default='P_S_Transformer_debug',
-                        help='model name')
-    
-    parser.add_argument('-num_wokers', type=int, default=0,
-                        help='how many subprocesses to use for data loading. '
-                             '0 means that the data will be loaded in the main process')
-    parser.add_argument('-log', type=str, default='train.log')
-    opt = parser.parse_args()
 
-    configfile = open(opt.config)
+    configfile = open('./config/hparams_transcriber.yaml')
     config = AttrDict(yaml.load(configfile,Loader=yaml.FullLoader))
 
-    log_name = opt.model_name or config.model.name
+    log_name = config.model.name
     log_folder = os.path.join(os.getcwd(),'logdir/logging',log_name)
     if not os.path.isdir(log_folder):
         os.mkdir(log_folder)
-    # logger = init_logger(log_folder+'/'+opt.log)
+    # logger = init_logger(log_folder+'/'+train.log)
 
     train_datafeeder = DataFeeder(config,'debug')
 
@@ -130,7 +119,6 @@ def main():
         ckpt_save_path = ckpt_manager.save()
         print('Saving checkpoint for epoch {} at {}'.format(epoch+1, ckpt_save_path))
         print('Time taken for 1 epoch: {} secs\n'.format(time.time() - start_time))
-        # TODO: eval
 
 if __name__=='__main__':
     main()

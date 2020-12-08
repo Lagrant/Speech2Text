@@ -14,7 +14,7 @@ model:
     d_model: 128
     dff: 512
     num_heads: 8
-    dropout_rate: 0.1
+    rate: 0.1
 
 train:
     EPOCHS: 20
@@ -22,5 +22,5 @@ train:
 optimizer:
     beta_1: 0.9
     beta_2: 0.98
-    epsilon: 1e-9
+    epsilon: 1.0e-9
     
