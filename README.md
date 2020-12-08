@@ -23,11 +23,19 @@ We can look at the model at two perspectives:
 
 2. Acoustic encoder and shrink mechanism can be regarded as a transcriber that transcribes speech to text. Semantic encoder and decoder can be thought as a NMT model that translates the text to target language.
 
+## Datasets
+1. [Open Translation Project](https://www.ted.com/participate/translate) from Ted which is a set of subtitles in many languages.
+
+2. [LibrariSpeech](http://www.openslr.org/12/) is an English speech corpus.
 
 ## Reference
 A pytorch version of speech transformer model. Click [here](https://github.com/kaituoxu/Speech-Transformer) to see.
 
 A tensorflow version of transformer model for language understanding. Click [here](https://www.tensorflow.org/tutorials/text/transformer) to see.
+
+A lib to convert flac file to wav file. Click [here](http://magento4newbies.blogspot.com/2014/11/converting-wav-files-to-flac-with.html) to see.
+
+Yuchen Liu, Junnan Zhu, Jiajun Zhang, and Chengqing Zong, "Bridging the Modality Gap for Speech-to-Text Translation".
 
 C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Inception Architecture for Computer Vision," 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), Las Vegas, NV, 2016, pp. 2818-2826, doi: 10.1109/CVPR.2016.308.
 

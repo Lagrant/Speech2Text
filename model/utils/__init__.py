@@ -1,4 +1,3 @@
-from .mylogger import *
 from .valuewindow import *
 
 class ValueWindow():

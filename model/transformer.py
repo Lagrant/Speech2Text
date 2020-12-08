@@ -5,34 +5,26 @@ from modules.decoder import Decoder
 
 class Transformer(tf.keras.Model):
     def __init__(self, num_layers=4, d_model=512, num_heads=8, dff=2048, pe_max_len=8000,
-                 target_vocab_size=8000, rate=0.1,config=None,logger=None):
+                 target_vocab_size=8000, rate=0.1,config=None):
         super(Transformer, self).__init__()
 
         if config is not None:
             num_enc_layers = config.model.N_encoder
-            if logger is not None:
-                logger.info('config.model.N_encoder: '+str(num_enc_layers))
+
             num_dec_layers = config.model.N_decoder
-            if logger is not None:
-                logger.info('config.model.N_decoder: '+str(num_dec_layers))
+            
             d_model = config.model.d_model
-            if logger is not None:
-                logger.info('config.model.d_model:   '+str(d_model))
+            
             num_heads = config.model.n_heads
-            if logger is not None:
-                logger.info('config.model.n_heads:   '+str(num_heads))
+            
             dff = config.model.d_ff
-            if logger is not None:
-                logger.info('config.model.d_ff:      '+str(dff))
+            
             pe_max_len = config.model.pe_max_len
-            if logger is not None:
-                logger.info('config.model.pe_max_len:'+str(pe_max_len))
+           
             target_vocab_size = config.model.vocab_size
-            if logger is not None:
-                logger.info('config.model.vocab_size:'+str(target_vocab_size))
+            
             rate = config.model.dropout
-            if logger is not None:
-                logger.info('config.model.dropout:   '+str(rate))
+            
         else:
             print('use default params')
             num_enc_layers = num_layers

@@ -1,0 +1,26 @@
+data:
+    corpus_path: './corpus'
+    languages: 'pt_to_en'
+    source_train: 'pt.train.r0.125'
+    source_dev: 'pt.dev'
+    target_train: 'en.train.r0.125'
+    target_dev: 'en.dev'
+    BUFFER_SIZE: 2000
+    BATCH_SIZE: 64
+    MAX_LENGTH: 40
+
+model:
+    num_layers: 4
+    d_model: 128
+    dff: 512
+    num_heads: 8
+    dropout_rate: 0.1
+
+train:
+    EPOCHS: 20
+
+optimizer:
+    beta_1: 0.9
+    beta_2: 0.98
+    epsilon: 1e-9
+    
