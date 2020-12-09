@@ -144,17 +144,6 @@ def main():
     #   ])
 
 def translate(sentence, transformer, tokenizer_tgt, tokenizer_src, MAX_LENGTH, plot=''):
-    result, attention_weights = evaluate(sentence)
-
-    predicted_sentence = tokenizer_tgt.decode([i for i in result 
-                                              if i < tokenizer_tgt.vocab_size])  
-
-    print('Input: {}'.format(sentence))
-    print('Predicted translation: {}'.format(predicted_sentence))
-
-    if plot:
-        plot_attention_weights(attention_weights, sentence, result, plot)
-
     def evaluate(inp_sentence):
         start_token = [tokenizer_src.vocab_size]
         end_token = [tokenizer_src.vocab_size + 1]
@@ -217,6 +206,20 @@ def translate(sentence, transformer, tokenizer_tgt, tokenizer_src, MAX_LENGTH, p
 
         plt.tight_layout()
         plt.show()
+    
+    result, attention_weights = evaluate(sentence)
+
+    predicted_sentence = tokenizer_tgt.decode([i for i in result 
+                                              if i < tokenizer_tgt.vocab_size])  
+
+    print('Input: {}'.format(sentence))
+    print('Predicted translation: {}'.format(predicted_sentence))
+
+    if plot:
+        plot_attention_weights(attention_weights, sentence, result, plot)
+
+    return predicted_sentence
+
 
 
 if __name__ == "__main__":

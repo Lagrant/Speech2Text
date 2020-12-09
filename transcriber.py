@@ -149,7 +149,8 @@ def transcribe(path_wav, model):
     text = id2char(predictions)
     print('Input file: {}'.format(path))
     print('Predicted transcription: {}'.format(text))
-
+    
+    return text
 
 if __name__=='__main__':
     model = main()
