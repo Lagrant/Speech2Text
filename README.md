@@ -38,8 +38,11 @@ We reimplemented almost all the classes and functions by tensorflow at ./model/m
 ## How to run
 You just need
 > python run.py
+
 Or
+
 > python transcriber.py
+
 > python translator.py
 
 ## Major softwares
