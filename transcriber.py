@@ -11,7 +11,7 @@ from model.utils import AttrDict,ValueWindow
 from model.model import Speech_transformer as Transformer
 import yaml,os,time
 from tensorflow.python.ops import summary_ops_v2
-from datasets.datafeeder import DataFeeder
+from datasets.datafeeder import DataFeeder, compute_fbank, BOS_FLAG, EOS_FLAG, chars
 
 def main():
 
@@ -62,8 +62,6 @@ def main():
     def train_step(batch_data):
         inp = batch_data['the_inputs'] # batch*time*feature
         tar = batch_data['the_labels'] # batch*time
-        # inp_len = batch_data['input_length']
-        # tar_len = batch_data['label_length']
         gtruth = batch_data['ground_truth']
         tar_inp = tar
         tar_real = gtruth
@@ -119,6 +117,47 @@ def main():
         ckpt_save_path = ckpt_manager.save()
         print('Saving checkpoint for epoch {} at {}'.format(epoch+1, ckpt_save_path))
         print('Time taken for 1 epoch: {} secs\n'.format(time.time() - start_time))
+    return model
+
+def transcribe(path_wav, model):    
+    def char2id(line):
+        ids = []
+        for char in line:
+            if char in chars:
+                ids.append(chars.index(char))
+            else:
+                ids.append(chars.index('<UNK>'))
+        return ids
+    
+    def id2char(ids):
+        line = []
+        for id in ids:
+            if (id >= 0 and id < len(chars)):
+                line.append(chars[id])
+            else:
+                line.append('<UNK>')
+        return ''.join(line)
+
+    char_list = ''
+    pad_fbank = compute_fbank(path_wav, False)
+    label = char2id([BOS_FLAG] + char_list)
+    g_truth = char2id(char_list + [EOS_FLAG])
+
+    combined_mask = create_combined_mask(tar=label)
+    predictions, _ = model(pad_fbank, label, False, None,
+                                   combined_mask, None)
+    text = id2char(predictions)
+    print('Input file: {}'.format(path))
+    print('Predicted transcription: {}'.format(text))
+
 
 if __name__=='__main__':
-    main()
+    model = main()
+
+    transcribe('./results/audio/test1.wav', model)
+
+    transcribe('./results/audio/test2.wav', model)
+
+    transcribe('./results/audio/test3.wav', model)
+
+    transcribe('./results/audio/test4.wav', model)

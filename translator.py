@@ -135,7 +135,7 @@ def main():
 
         print ('Time taken for 1 epoch: {} secs\n'.format(time.time() - start))
     
-    return tokenizer_tgt, tokenizer_src, config.data.MAX_LENGTH
+    return transformer, tokenizer_tgt, tokenizer_src, config.data.MAX_LENGTH
 
     # def point_wise_feed_forward_network(d_model, dff):
     #   return tf.keras.Sequential([
@@ -143,7 +143,7 @@ def main():
     #       tf.keras.layers.Dense(d_model)  # (batch_size, seq_len, d_model)
     #   ])
 
-def translate(sentence, tokenizer_tgt, tokenizer_src, MAX_LENGTH, plot=''):
+def translate(sentence, transformer, tokenizer_tgt, tokenizer_src, MAX_LENGTH, plot=''):
     result, attention_weights = evaluate(sentence)
 
     predicted_sentence = tokenizer_tgt.decode([i for i in result 
@@ -159,12 +159,9 @@ def translate(sentence, tokenizer_tgt, tokenizer_src, MAX_LENGTH, plot=''):
         start_token = [tokenizer_src.vocab_size]
         end_token = [tokenizer_src.vocab_size + 1]
 
-        # 输入语句是葡萄牙语，增加开始和结束标记
         inp_sentence = start_token + tokenizer_src.encode(inp_sentence) + end_token
         encoder_input = tf.expand_dims(inp_sentence, 0)
 
-        # 因为目标是英语，输入 transformer 的第一个词应该是
-        # 英语的开始标记。
         decoder_input = [tokenizer_tgt.vocab_size]
         output = tf.expand_dims(decoder_input, 0)
 
@@ -223,25 +220,25 @@ def translate(sentence, tokenizer_tgt, tokenizer_src, MAX_LENGTH, plot=''):
 
 
 if __name__ == "__main__":
-    tokenizer_tgt, tokenizer_src, MAX_LENGTH = main()
+    transformer, tokenizer_tgt, tokenizer_src, MAX_LENGTH = main()
 
     translate("este é um problema que temos que resolver.", 
-        tokenizer_tgt, tokenizer_src, MAX_LENGTH
+        transformer, tokenizer_tgt, tokenizer_src, MAX_LENGTH
     )
     print ("Real translation: this is a problem we have to solve .")
 
     translate("os meus vizinhos ouviram sobre esta ideia.", 
-        tokenizer_tgt, tokenizer_src, MAX_LENGTH
+        transformer, tokenizer_tgt, tokenizer_src, MAX_LENGTH
     )
     print ("Real translation: and my neighboring homes heard about this idea .")
 
     translate("vou então muito rapidamente partilhar convosco algumas histórias de algumas coisas mágicas que aconteceram.", 
-        tokenizer_tgt, tokenizer_src, MAX_LENGTH
+        transformer, tokenizer_tgt, tokenizer_src, MAX_LENGTH
     )
     print ("Real translation: so i 'll just share with you some stories very quickly of some magical things that have happened .")
 
     translate("este é o primeiro livro que eu fiz.", 
-        tokenizer_tgt, tokenizer_src, MAX_LENGTH, 
+        transformer, tokenizer_tgt, tokenizer_src, MAX_LENGTH, 
         plot='decoder_layer4_block2'
     )
     print ("Real translation: this is the first book i've ever done.")

@@ -103,7 +103,6 @@ class DataFeeder(object):
         wav_lens = np.array([len(data) for data in wav_data_lst])  # len(data)实际上就是求语谱图的第一维的长度，也就是n_frames
         # 取一个batch中的最长
         wav_max_len = max(wav_lens)
-        # TODO: 1-D conv是 三维 ，2-D conv是四维 ，np.zeros 默认是float32
         new_wav_data_lst = np.zeros(
             (len(wav_data_lst), wav_max_len, feature_dim, 3),dtype=np.float32) # 如果增加了一阶和二阶导数则是三个channel，分别是static, first and second derivative features
         for i in range(len(wav_data_lst)):
@@ -139,10 +138,7 @@ class DataFeeder(object):
                 end = begin + self.batch_size
                 sub_list = shuffle_list[begin:end]
                 for index in sub_list:
-                    # TODO：计算频谱图
-                    fbank = compute_fbank(self.data_path +'/'+ self.wav_lst[index],False) # T,D,3
-
-                    pad_fbank = fbank
+                    pad_fbank = compute_fbank(self.data_path +'/'+ self.wav_lst[index],False) # T,D,3
                     label = self.char2id( [BOS_FLAG]+self.char_list[index], self.vocab)
                     g_truth = self.char2id( self.char_list[index]+[EOS_FLAG], self.vocab)
                     # print(label)
@@ -150,18 +146,13 @@ class DataFeeder(object):
                     label_data_lst.append(label)
                     ground_truth_lst.append(g_truth)
 
-                # TODO：对频谱图时间维度进行第二次pad，pad成本次batch中最长的长度
-                # TODO: label是decoder输入 g_truth是decoder的target
                 pad_wav_data, input_length = self.wav_padding(wav_data_lst)
                 pad_label_data, label_length = self.label_padding(label_data_lst,EOS)
                 pad_ground_truth, _ = self.label_padding(ground_truth_lst,PAD)
 
                 inputs = {'the_inputs': pad_wav_data,
                           'the_labels': pad_label_data,
-                          'input_length': input_length.reshape(-1,),
-                          'label_length': label_length.reshape(-1,),  # batch中的每个utt的真实长度
-                          'ground_truth': pad_ground_truth
-                          }
+                          'ground_truth': pad_ground_truth}
                 print('genarate one batch mel data')
                 yield inputs
         pass
