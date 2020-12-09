@@ -3,7 +3,7 @@ from os.path import join, basename
 from glob import glob
 import numpy as np
 
-data_path = 'E:\corpus_en\LibriSpeech'
+data_path = '/Volumes/My Passport/LibriSpeech'
 large = False
 medium = False
 
