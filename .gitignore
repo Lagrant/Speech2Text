@@ -137,3 +137,6 @@ word-embeddings-for-nmt-master/
 
 #logs
 logdir/
+
+#results
+results/
