@@ -10,11 +10,13 @@ data:
     MAX_LENGTH: 40
 
 model:
-    num_layers: 4
+    N_encoder: 4
+    N_decoder: 4
     d_model: 128
-    dff: 512
-    num_heads: 8
-    rate: 0.1
+    d_ff: 512
+    n_heads: 8
+    dropout: 0.1
+    is_acoustic: False
 
 train:
     EPOCHS: 20

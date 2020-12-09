@@ -33,6 +33,7 @@ model:
     N_encoder: 6
     N_decoder: 6
     d_ff: 1024
+    is_acoustic: True
 
 train:
     seed: 2020

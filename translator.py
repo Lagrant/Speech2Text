@@ -69,12 +69,12 @@ def main():
     train_loss = tf.keras.metrics.Mean(name='train_loss')
     train_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(
         name='train_accuracy')
-
-    transformer = Transformer(config, input_vocab_size, target_vocab_size, 
-                              pe_input=input_vocab_size, 
-                              pe_target=target_vocab_size)
     
-    checkpoint_path = "./checkpoints/train"
+    config.model.pe_max_len = input_vocab_size
+    config.model.vocab_size = target_vocab_size
+    transformer = Transformer(config)
+    
+    checkpoint_path = "./logdir/logging/T_Transformer/checkpoints/train"
 
     ckpt = tf.train.Checkpoint(transformer=transformer,
                               optimizer=optimizer)

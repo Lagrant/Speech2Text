@@ -24,6 +24,8 @@ class Transformer(tf.keras.Model):
             target_vocab_size = config.model.vocab_size
             
             rate = config.model.dropout
+
+            is_acoustic = config.model.is_acoustic
             
         else:
             print('use default params')
@@ -31,7 +33,7 @@ class Transformer(tf.keras.Model):
             num_dec_layers = num_layers
 
         self.encoder = Encoder(num_enc_layers, d_model, num_heads, dff,
-                                   pe_max_len,'encoder', rate)
+                                   pe_max_len,'encoder', rate, is_acoustic)
 
         self.decoder = Decoder(num_dec_layers, d_model, num_heads, dff,
                                target_vocab_size, 'decoder',pe_max_len,rate)

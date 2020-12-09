@@ -7,19 +7,19 @@ from positional_encoding import positional_encoding
 
 class Encoder(tf.keras.Model):
     def __init__(self, num_layers, d_model, num_heads, dff, pe_max_len,name,
-                 dp=0.1, input_vocab_size=None):
+                 dp=0.1, is_acoustic=False):
         super(Encoder, self).__init__()
 
         self.d_model = d_model
         self.num_layers = num_layers
         
         self.rate =dp
-        self.acous_seman = input_vocab_size
+        self.is_acoustic = is_acoustic
         
         self.pos_encoding = positional_encoding(pe_max_len, self.d_model) # 采用类似缓存的思想，申请超长的pe，后面只会用到一小部分
 
-        if (self.acous_seman is not None):
-            self.embedding = tf.keras.layers.Embedding(input_vocab_size, d_model)
+        if (not self.is_acoustic):
+            self.embedding = tf.keras.layers.Embedding(pe_max_len, d_model)
             self.dropout = tf.keras.layers.Dropout(rate=self.rate)
         else:
             self.input_proj = tf.keras.models.Sequential(name='en_proj')
@@ -36,7 +36,7 @@ class Encoder(tf.keras.Model):
         mask = inputs[1]
         seq_len = tf.shape(x)[1]
         
-        if (self.acous_seman is not None):
+        if (not self.is_acoustic):
             x = self.embedding(x)  # (batch_size, input_seq_len, d_model)
             x *= tf.math.sqrt(tf.cast(self.d_model, tf.float32))
         else:
