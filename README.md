@@ -24,7 +24,7 @@ We can look at the model at two perspectives:
 2. Acoustic encoder and shrink mechanism can be regarded as a transcriber that transcribes speech to text. Semantic encoder and decoder can be thought as a NMT model that translates the text to target language.
 
 ## Datasets
-1. [Open Translation Project](https://www.ted.com/participate/translate) from Ted which is a set of subtitles in many languages.
+1. [Open Translation Project](https://www.ted.com/participate/translate) from Ted is a set of subtitles in many languages.
 
 2. [LibrariSpeech](http://www.openslr.org/12/) is an English speech corpus.
 
