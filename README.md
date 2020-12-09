@@ -45,6 +45,8 @@ Or
 
 > python translator.py
 
+You can change hyper-parameters at ./config/hparams_transcriber.yaml and ./config/hparams_translator.yaml
+
 ## Major softwares
 python=3.6.1
 nltk==3.5
