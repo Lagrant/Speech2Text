@@ -36,16 +36,20 @@ Coverting flac file to wav file: http://magento4newbies.blogspot.com/2014/11/con
 We reimplemented almost all the classes and functions by tensorflow at ./model/modules/ . The original source is at https://github.com/kaituoxu/Speech-Transformer/src/transformer
 
 ## How to run
-You just need
+Specify path of speech corpus at ./config/hparams_transcriber.yaml
+Specify path of text corpus at ./config/hparams_translator.yaml
+You can also set other hyper-parameters at ./config/hparams_transcriber.yaml and ./config/hparams_translator.yaml
+
+Then, you just need
 > python run.py
 
 Or
-
 > python transcriber.py
 
 > python translator.py
 
-You can change hyper-parameters at ./config/hparams_transcriber.yaml and ./config/hparams_translator.yaml
+To evaluate results, you need to build a directory named results at the root directory, store results at candidate.txt and ground truth at ref.txt. Then run
+> python evaluation.py
 
 ## Major softwares
 python=3.6.1
