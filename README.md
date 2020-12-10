@@ -60,8 +60,6 @@ speechpy==2.4
 2. [LibrariSpeech](http://www.openslr.org/12/) is an English speech corpus.
 
 ## References
-A lib to convert flac file to wav file. Click [here](http://magento4newbies.blogspot.com/2014/11/converting-wav-files-to-flac-with.html) to see.
-
 Rafael Müller, Simon Kornblith, Geoffrey Hinton, "When Does Label Smoothing Help?" (arXiv:1906.02629 [cs.LG]).
 
 Yuchen Liu, Junnan Zhu, Jiajun Zhang, and Chengqing Zong, "Bridging the Modality Gap for Speech-to-Text Translation" (arXiv:2010.14920 [cs.CL]).
