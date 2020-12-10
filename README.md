@@ -8,7 +8,7 @@ Speech input -> Pre-net -> Transformer -> Label smoothing loss function
 
 Pre-net is a module that has two 2D-convolutional layers followed by two stacked attention layers.
 Transformer is the main structure of the encoder, and [here](http://jalammar.github.io/illustrated-transformer/) is an article to illustrate it. 
-Label smoothing is the loss function for classification problems to prevent the model from predicting the training examples too confidently
+Label smoothing is the loss function for classification problems to prevent the model from predicting the training examples too confidently.
 
 ## Acoustic decoder
 Outputs -> Embeddings -> Positional encoding -> Transformer -> Softmax -> Output probabilities
@@ -17,7 +17,7 @@ Positional encoding provides relative positional information for a word at the s
 
 ## Semantic encoder and decoder
 
-They have similar structure to acoustic encoder and decoder. The loss function of semantic encoder is sparse categorial cross entropy loss.
+They have similar structure to acoustic encoder and decoder. The loss function of semantic encoder is sparse categorical cross entropy loss.
 
 ---
 We can look at the model at two perspectives:
@@ -65,7 +65,7 @@ speechpy==2.4
 ## Datasets
 1. [Open Translation Project](https://www.ted.com/participate/translate) from Ted is a set of subtitles in many languages.
 
-2. [LibrariSpeech](http://www.openslr.org/12/) is an English speech corpus.
+2. [LibriSpeech](http://www.openslr.org/12/) is an English speech corpus.
 
 ## References
 Rafael Müller, Simon Kornblith, Geoffrey Hinton, "When Does Label Smoothing Help?" (arXiv:1906.02629 [cs.LG]).
@@ -76,7 +76,6 @@ C. Szegedy, V. Vanhoucke, S. Ioffe, J. Shlens and Z. Wojna, "Rethinking the Ince
 
 Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł. & Polosukhin, I. (2017). Attention is all you need. Advances in Neural Information Processing Systems (p./pp. 5998--6008), .
 
-Linhao Dong, Shuang Xu,and Bo Xu. “Speech-transformer:A no-recurrence sequence-to-sequence model for speech recognition” in ICASSP 2018
-
+L. Dong, S. Xu and B. Xu, "Speech-Transformer: A No-Recurrence Sequence-to-Sequence Model for Speech Recognition," 2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), Calgary, AB, 2018, pp. 5884-5888, doi: 10.1109/ICASSP.2018.8462506.
 
 
