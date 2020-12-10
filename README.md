@@ -28,7 +28,7 @@ We can look at the model at two perspectives:
 ## Sources
 A pytorch version of speech transformer model: https://github.com/kaituoxu/Speech-Transformer
 
-A bash tutoral to implement parallelization of batch jobs https://jerkwin.github.io/2013/12/14/Bash%E8%84%9A%E6%9C%AC%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E4%BD%9C%E4%B8%9A%E5%B9%B6%E8%A1%8C%E5%8C%96/
+A bash tutoral to implement parallelization of batch jobs: https://jerkwin.github.io/2013/12/14/Bash%E8%84%9A%E6%9C%AC%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E4%BD%9C%E4%B8%9A%E5%B9%B6%E8%A1%8C%E5%8C%96/
 
 Coverting flac file to wav file: http://magento4newbies.blogspot.com/2014/11/converting-wav-files-to-flac-with.html
 
@@ -48,14 +48,18 @@ Or
 
 > python translator.py
 
-To evaluate results, you need to build a directory named results at the root directory, store results at candidate.txt and ground truth at ref.txt. Then run
+To evaluate results, you need to build a directory named results at the root directory, store results at results/candidate.txt and ground truth at results/ref.txt. Then run
 > python evaluation.py
 
 ## Major softwares
 python=3.6.1
+
 nltk==3.5
+
 tensorflow==2.3.1
+
 tensorflow-datasets==4.1.0
+
 speechpy==2.4
 
 ## Datasets
@@ -64,8 +68,6 @@ speechpy==2.4
 2. [LibrariSpeech](http://www.openslr.org/12/) is an English speech corpus.
 
 ## References
-A lib to convert flac file to wav file: http://magento4newbies.blogspot.com/2014/11/converting-wav-files-to-flac-with.html
-
 Rafael Müller, Simon Kornblith, Geoffrey Hinton, "When Does Label Smoothing Help?" (arXiv:1906.02629 [cs.LG]).
 
 Yuchen Liu, Junnan Zhu, Jiajun Zhang, and Chengqing Zong, "Bridging the Modality Gap for Speech-to-Text Translation" (arXiv:2010.14920 [cs.CL]).
